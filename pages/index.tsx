@@ -68,6 +68,7 @@ export function BasicTabs() {
           <Tab label="Item Two" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
           <Tab label="Item Four" {...a11yProps(3)} />
+          <Tab value="one" label="New Arrivals in the Longest Text of Nonfiction that should appear in the next line" {...a11yProps(4)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
