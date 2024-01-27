@@ -10,7 +10,6 @@ defaults.responsive = true;
 
 defaults.plugins.title.display = true;
 defaults.plugins.title.align = "start";
-defaults.plugins.title.font.size = 20;
 defaults.plugins.title.color = "black";
 
 

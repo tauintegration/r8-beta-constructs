@@ -26,7 +26,6 @@ export default function Page() {
         <AppBar position="static" color="primary">
           <h1 style={{color:'skyblue',fontSize:'30px',fontWeight:'none',margin:'0 auto',textAlign:'center',padding:'5px'}}>Bet Market Analysis Dashboard</h1>
           <MenuDrawer />
-          <Selection />
         </AppBar>
       </ThemeProvider>
     </Stack>
