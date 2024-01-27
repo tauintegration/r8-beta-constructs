@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Inter } from "next/font/google";
-import Selection from '@/src/components/Selection';
 import MenuDrawer from '@/src/components/MenuDrawer';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';

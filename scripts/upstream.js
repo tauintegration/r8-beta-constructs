@@ -6,7 +6,6 @@ import { pool } from './mysql2config.js';
 
 import streamJson from 'stream-json';
 import StreamArray from 'stream-json/streamers/StreamArray.js';
-// import './datafn.js';
 import { extractBetData, extractComponentData, extractEventData, extractPlayerData } from './datafn.js';
 
 const { parser } = streamJson;
@@ -111,4 +110,3 @@ jsonStream.on('end', () => {
 jsonStream.on('error', (error) => {
     console.error('Error processing data:', error);
 });
-
