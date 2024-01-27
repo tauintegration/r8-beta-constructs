@@ -3,21 +3,16 @@ import { pool } from '@/lib/mysql2';
 export default async function handler(req, res) {
   const { index, parameter } = req.query;
 
-  // url http://localhost:3000/api/book_risk?parameter=123
+  //  curl http://localhost:3000/api/dimensional/line-components/uri?parameter=123
   console.log(index); // book_risk is the value since [param] dynamic name maps to this value
   console.log(parameter);
 
-  const sql = `
-    SELECT
-      HOUR(B.accepted_datetime_utc) AS HourOfDay,
-      SUM(B.book_risk) AS TotalBetRisk
-    FROM Bets B
-    GROUP BY HourOfDay
-    ORDER BY HourOfDay;
+  const sql_ = `
+  SELECT line, COUNT(*) AS NumberOfComponents, AVG(component_price) AS AverageComponentPrice, SUM(book_risk_component) AS TotalBookRiskComponent FROM BetComponents GROUP BY line ORDER BY BetComponents.line ASC;
   `;
 
   try {
-    const [rows, fields] = await pool.query(sql, [index]); // WHERE column_name = ?
+    const [rows, fields] = await pool.query(sql_, [index]); // WHERE column_name = ?
 
     res.status(200).json({ data: rows });
   } catch (err) {
