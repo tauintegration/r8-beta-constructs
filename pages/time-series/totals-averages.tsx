@@ -2,13 +2,11 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Inter } from "next/font/google";
 import Selection from '@/src/components/Selection';
 import MenuDrawer from '@/src/components/MenuDrawer';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-const inter = Inter({ subsets: ["latin"] });
 
 
 const darkTheme = createTheme({
@@ -21,24 +19,16 @@ const darkTheme = createTheme({
 });
 
 
-export function FirstPage() {
+export default function Page() {
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={darkTheme}>
         <AppBar position="static" color="primary">
           <h1 style={{color:'skyblue',fontSize:'30px',fontWeight:'none',margin:'0 auto',textAlign:'center',padding:'5px'}}>Bet Market Analysis Dashboard</h1>
           <MenuDrawer />
+          <Selection />
         </AppBar>
       </ThemeProvider>
     </Stack>
   );
-}
-
-
-
-export default function Home() {
-  return (
-    <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
-      <FirstPage />
-    </main>);
 }

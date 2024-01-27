@@ -29,11 +29,11 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top' as const,
+      position: 'bottom' as const,
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      text: 'Time Series',
     },
   },
 };
