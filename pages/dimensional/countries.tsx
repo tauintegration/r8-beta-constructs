@@ -1,12 +1,9 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Selection from '@/src/components/Selection';
 import MenuDrawer from '@/src/components/MenuDrawer';
-
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
-
+import BasicPie from '@/src/components/BasicPie';
 
 
 const darkTheme = createTheme({
@@ -29,6 +26,7 @@ export default function Page() {
           <Selection />
         </AppBar>
       </ThemeProvider>
+      <BasicPie />
     </Stack>
   );
 }

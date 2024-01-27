@@ -44,37 +44,44 @@ export default function MenuDrawer() {
       <Divider />
       <br />
       <List>
-        {[
-          { text: 'Totals and Averages', link: '/time-series/totals-averages' },
-          { text: 'Risk and Probabilities', link: '/time-series/risk-probabilities' },
-          { text: 'Over/Under', link: '/time-series/over-under' },
-          { text: 'Yes/No', link: '/time-series/yes-no' },
-          { text: 'Countries', link: '/time-series/countries' },
-        ].map((item, index) => (
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={<a href={item.link}>{item.text}</a>} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+            {[
+              { text: 'Totals and Averages', link: '/time-series/totals-averages' },
+              { text: 'Risk and Probabilities', link: '/time-series/risk-probabilities' },
+              { text: 'Over/Under', link: '/time-series/over-under' },
+              { text: 'Yes/No', link: '/time-series/yes-no' },
+            ].map((item, index) => (
+              <a key={item.text} href={item.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemText primary={item.text} />
+                  </ListItemButton>
+                </ListItem>
+              </a>
+            ))}
       </List>
+
 
 
       <div className='' style={{fontSize:"20px",padding:"0 0 0 15px",margin:"100px 0 20px 0"}}>Dimensional Analysis</div>
       <Divider />
-      <List>
-        {[
-          { text: 'Bet Selection', link: '/dimensional/bet-selection' },
-          { text: 'Hour of Day', link: '/dimensional/hour-of-day' },
-          { text: 'Single vs Multi', link: '/dimensional/single-vs-multi' },
-        ].map((item, index) => (
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={<a href={item.link}>{item.text}</a>} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+       <List>
+       {[
+         { text: 'Bet Selection', link: '/dimensional/bet-selection' },
+         { text: 'Hour of Day', link: '/dimensional/hour-of-day' },
+         { text: 'Countries', link: '/dimensional/countries' },
+         { text: 'Single vs Multi', link: '/dimensional/single-vs-multi' },
+         { text: 'Line Components', link: '/dimensional/line-components' }, // Add the new item here
+       ].map((item, index) => (
+         <a key={item.text} href={item.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+           <ListItem disablePadding>
+             <ListItemButton>
+               <ListItemText primary={item.text} />
+             </ListItemButton>
+           </ListItem>
+         </a>
+       ))}
+     </List>
+
     </Box>
   );
 

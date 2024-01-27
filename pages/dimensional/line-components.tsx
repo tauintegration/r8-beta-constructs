@@ -3,7 +3,8 @@ import Stack from '@mui/material/Stack';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Selection from '@/src/components/Selection';
 import MenuDrawer from '@/src/components/MenuDrawer';
-import VerticalBarChartComparatives from '@/src/components/VerticalBarChartsComparativesTwoColumns';
+import BasicPie from '@/src/components/BasicPie';
+
 
 const darkTheme = createTheme({
   palette: {
@@ -25,7 +26,7 @@ export default function Page() {
           <Selection />
         </AppBar>
       </ThemeProvider>
-      <VerticalBarChartComparatives />
+      <BasicPie />
     </Stack>
   );
 }
