@@ -84,6 +84,7 @@ selection
 */
 
 export default function DoughnutChart(apiData:any, options: any) {
+  const [selectedValue, setSelectedValue] = React.useState(''); // Initialize with a default value
 
 
   console.log(apiData);
@@ -105,7 +106,9 @@ export default function DoughnutChart(apiData:any, options: any) {
   //   labels,
   //   datasets
   // };
-  function handler() { };
+  const handleChange = (event: any) => {
+    setSelectedValue(event.target.value);
+  };
 
   function valuetext(value: number) {
     return `${value}°C`;
@@ -119,15 +122,16 @@ export default function DoughnutChart(apiData:any, options: any) {
       <Box sx={{ minWidth: 400, maxWidth: 500 }} style={{ margin: '10px' }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Bet Selection</InputLabel>
+
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={1}
-            label="Age"
-            onChange={handler}
-          >
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={selectedValue} // Link state here
+          label="Bet Selection"
+          onChange={handleChange}>
             {listOut}
           </Select>
+
         </FormControl>
       </Box>
 
@@ -137,34 +141,3 @@ export default function DoughnutChart(apiData:any, options: any) {
     </Box>
   );
 }
-
-
-
-// const YourComponent = ({ labellist, age, handler }) => {
-//   const listOut = labellist.map((label, index) => (
-//     <MenuItem key={index} value={index}>{label}</MenuItem>
-//   ));
-
-//   return (
-//     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-//       <Box sx={{ minWidth: 400, maxWidth: 500 }} style={{ margin: '10px' }}>
-//         <FormControl fullWidth>
-//           <InputLabel id="demo-simple-select-label">Bet Selection</InputLabel>
-//           <Select
-//             labelId="demo-simple-select-label"
-//             id="demo-simple-select"
-//             value={age}
-//             label="Age"
-//             onChange={handler}
-//           >
-//             {listOut}
-//           </Select>
-//         </FormControl>
-//       </Box>
-
-//       <Box>
-//       <Doughnut options={options} data={datasets}  style={{margin:'5px 50px 40px 5px',display:'flex',transform:'scale(0.90)'}}  />
-//       </Box>
-//     </Box>
-//   );
-// };
