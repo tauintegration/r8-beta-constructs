@@ -43,9 +43,6 @@ const processData = (apiData: ApiData | undefined) => {
   let datum = Array.from(arrayData[0] as any[]);
   const labels = datum.map((item: any) => item.HourOfBet);
 
-  // let datum = Array.from(arrayData[0]);
-  // const labels = datum.map(item => item.HourOfBet);
-
   const averageBetAmountData = datum.map(item => parseFloat(item.AverageBetAmount));
   const totalBetAmount = datum.map(i => parseFloat(i.TotalBetAmount));
   const totalBetProbability = datum.map(i => parseInt(i.TotalBetProbability));
@@ -62,10 +59,16 @@ export default function LineChartApiLoaded(apiData:any, options: any) {
   let dataset = [
     {
       label: 'averageBetAmountData',
-      data: averageBetAmountData,
+      data: totalBetAmount,
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
+    // {
+    //   label: 'averageBetAmountData',
+    //   data: averageBetAmountData,
+    //   borderColor: 'rgb(255, 99, 132)',
+    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    // },
     // {
     //   label: 'totalBetAmount',
     //   data: totalBetAmount,
