@@ -38,14 +38,27 @@ const processData = (apiData: ApiData | undefined) => {
 
   }
 
+<<<<<<< Updated upstream
+=======
+const processData = (apiData:any) => {
+>>>>>>> Stashed changes
 
   console.log(arrayData[0]);
   let datum = Array.from(arrayData[0] as any[]);
   const labels = datum.map((item: any) => item.HourOfBet);
 
+<<<<<<< Updated upstream
   const averageBetAmountData = datum.map(item => parseFloat(item.AverageBetAmount));
   const totalBetAmount = datum.map(i => parseFloat(i.TotalBetAmount));
   const totalBetProbability = datum.map(i => parseInt(i.TotalBetProbability));
+=======
+  const labels = datum.map((item: any) => item.HourOfBet);
+
+//   const labels = datum.map(item => item.HourOfBet);
+  const averageBetAmountData = datum.map((item: any) => parseFloat(item.AverageBetAmount));
+  const totalBetAmount = datum.map((item: any) => parseFloat(item.TotalBetAmount));
+  const totalBetProbability = datum.map((item: any) => parseInt(item.TotalBetProbability));
+>>>>>>> Stashed changes
 
   return { labels, averageBetAmountData, totalBetAmount, totalBetProbability };
 };
