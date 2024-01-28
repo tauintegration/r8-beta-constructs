@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
@@ -50,41 +50,10 @@ const processData = (apiData: any) => {
   return { labellist };
 };
 
-/*
-AlternateBets
-:
-"197138"
-AverageComponentCount
-:
-"11.2007"
-AverageComponentPrice
-:
-"759.8003"
-AverageLine
-:
-"12.2217"
-AverageProbability
-:
-"0.4769"
-NumberOfComponents
-:
-479357
-StandardBets
-:
-"282219"
-TotalBookProfitComponent
-:
-"350305"
-TotalBookRiskComponent
-:
-"1592480"
-selection
-:
-"over"
-*/
 
 export default function DoughnutChart(apiData:any, options: any) {
-  const [selectedValue, setSelectedValue] = React.useState(''); // Initialize with a default value
+  const [selectedValue, setSelectedValue] = useState('');
+  const [chartData, setChartData] = useState({});
 
 
   console.log(apiData);
@@ -93,26 +62,71 @@ export default function DoughnutChart(apiData:any, options: any) {
   console.log(labels);
   const list = processData(labels);
   console.log(list);
-  // let dataset = [
-  //   {
-  //     label: 'totalNoBets',
-  //     data: labels,
-  //     borderColor: 'tomato',
-  //     backgroundColor: 'gray',
-  //   },
-  // ];
 
-  // let data = {
-  //   labels,
-  //   datasets
-  // };
-  const handleChange = (event: any) => {
+
+  const handleChange = (event:any) => {
     setSelectedValue(event.target.value);
   };
 
-  function valuetext(value: number) {
-    return `${value}°C`;
-  }
+  useEffect(() => {
+    const updatedData = {};
+    // some chartDataUpdater(selectedValue);
+
+    // fetch('/api/dimensional/bet-selection/a?parameter=123')
+    //   .then(response => response.json())
+    //   .then((data:any) => {
+    //     // setValue(data);
+    //     console.log(data);
+
+    //     // setChartData(updatedData);
+    //     setChartData(data);
+    //     console.log(chartData);
+    const selectedItem = apiData.apiData.data.find((item:any) => item.selection === "under");
+
+    //     const selectedItem = data.find((item:any) => item.selection === selectedValue);
+    console.log(selectedItem);
+
+    //    })
+    //    .catch(error => { });
+
+  }, [selectedValue]);
+
+
+
+//   useEffect(() => {
+
+//     setIsLoading(true);
+
+//     fetch('/api/dimensional/bet-selection/a?parameter=123')
+//       .then(response => response.json())
+//       .then(data => {
+//         setValue(data);
+
+//         // let {
+//         //   labels,
+//         //   alternateBets,
+//         //   averageComponentCount,
+//         //   averageComponentPrice,
+//         //   averageLine,
+//         //   averageProbability,
+//         //   numberOfComponents,
+//         //   standardBets,
+//         //   totalBookProfitComponent,
+//         //   totalBookRiskComponent
+//         // } = processDataAtContainer(data);
+
+//         console.log(value);
+//         // console.log(data);
+
+//         // if(!!value) { labels = value.data.map((item: any) => item.selection); console.log(labels); }
+//         setIsLoading(false); //
+//       })
+//       .catch(error => { });
+
+// }, []);
+
+
+
   const listOut = list.labellist.map((label: any, index: any) => (
     <MenuItem key={index} value={index}>{label}</MenuItem>
   ));
@@ -122,21 +136,20 @@ export default function DoughnutChart(apiData:any, options: any) {
       <Box sx={{ minWidth: 400, maxWidth: 500 }} style={{ margin: '10px' }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Bet Selection</InputLabel>
-
           <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={selectedValue} // Link state here
-          label="Bet Selection"
-          onChange={handleChange}>
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Age"
+            value={selectedValue}
+            onChange={handleChange}
+          >
             {listOut}
           </Select>
-
         </FormControl>
       </Box>
 
       <Box>
-      <Doughnut options={options} data={datasets}  style={{margin:'5px 50px 40px 5px',display:'flex',transform:'scale(0.90)'}}  />
+        <Doughnut options={options} data={datasets}  style={{margin:'5px 50px 40px 5px',display:'flex',transform:'scale(0.90)'}}  />
       </Box>
     </Box>
   );
