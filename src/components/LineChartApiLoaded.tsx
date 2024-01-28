@@ -27,16 +27,16 @@ ChartJS.register(
 
 
 
-const processData = (apiData:object) => {
+const processData = (apiData:any) => {
 
   let arrayData = Array.of(apiData.apiData);
   console.log(arrayData[0]);
   let datum = Array.from(arrayData[0]);
 
-  const labels = datum.map(item => item.HourOfBet);
-  const averageBetAmountData = datum.map(item => parseFloat(item.AverageBetAmount));
-  const totalBetAmount = datum.map(i => parseFloat(i.TotalBetAmount));
-  const totalBetProbability = datum.map(i => parseInt(i.TotalBetProbability));
+  const labels = datum.map((item:any) => item.HourOfBet);
+  const averageBetAmountData = datum.map((item:any) => parseFloat(item.AverageBetAmount));
+  const totalBetAmount = datum.map((i:any) => parseFloat(i.TotalBetAmount));
+  const totalBetProbability = datum.map((i:any) => parseInt(i.TotalBetProbability));
 
   return { labels, averageBetAmountData, totalBetAmount, totalBetProbability };
 };
