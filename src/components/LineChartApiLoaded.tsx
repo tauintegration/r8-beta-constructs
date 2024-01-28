@@ -26,14 +26,26 @@ ChartJS.register(
 );
 
 
+interface ApiData {
+  apiData: any[]; // Replace `any[]` with a more specific type if possible
+}
 
-const processData = (apiData:object) => {
+const processData = (apiData: ApiData | undefined) => {
 
-  let arrayData = Array.of(apiData.apiData);
+  let arrayData = [];
+  if (apiData && apiData.apiData) {
+    arrayData = apiData.apiData;
+
+  }
+
+
   console.log(arrayData[0]);
-  let datum = Array.from(arrayData[0]);
+  let datum = Array.from(arrayData[0] as any[]);
+  const labels = datum.map((item: any) => item.HourOfBet);
 
-  const labels = datum.map(item => item.HourOfBet);
+  // let datum = Array.from(arrayData[0]);
+  // const labels = datum.map(item => item.HourOfBet);
+
   const averageBetAmountData = datum.map(item => parseFloat(item.AverageBetAmount));
   const totalBetAmount = datum.map(i => parseFloat(i.TotalBetAmount));
   const totalBetProbability = datum.map(i => parseInt(i.TotalBetProbability));
