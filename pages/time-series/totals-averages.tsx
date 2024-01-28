@@ -71,9 +71,11 @@ export default function Page() {
         <AppBar position="static" color="primary">
           <h1 style={{color:'skyblue',fontSize:'30px',fontWeight:'none',margin:'0 auto',textAlign:'center',padding:'5px'}}>Bet Market Analysis Dashboard</h1>
           <MenuDrawer />
-          <Selection />
         </AppBar>
       </ThemeProvider>
+
+      <h2 className="pl-10 mb-4 text-3xl font-extrabold leading-none tracking-tight text-blue-400 md:text-4xl dark:text-white">(time-series)</h2>
+      <h1 className="pl-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-500 md:text-5xl lg:text-6xl dark:text-white">Totals and Averages</h1>
 
       {isLoading ? (
       <CircularProgress style={{margin:"150px auto"}}/>

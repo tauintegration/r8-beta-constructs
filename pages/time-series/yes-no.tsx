@@ -51,7 +51,7 @@ export default function Page() {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: 'left' as const,
       },
       title: {
         display: true,
@@ -69,10 +69,13 @@ export default function Page() {
         </AppBar>
       </ThemeProvider>
 
+      <h2 className="pl-10 mb-4 text-3xl font-extrabold leading-none tracking-tight text-green-600 md:text-4xl dark:text-white">(time-series)</h2>
+      <h1 className="pl-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-green-900 md:text-5xl lg:text-6xl dark:text-white">Yes/No</h1>
+
       {isLoading ? (
       <CircularProgress style={{margin:"150px auto"}}/>
     ) : (
-      <LineChartApiLoadedAlt options={options} apiData={value} />
+      <LineChartApiLoadedAlt options={options} apiData={value} style={{transform:'scale(0.8)'}}/>
     )}
 
     </Stack>

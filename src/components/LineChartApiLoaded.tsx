@@ -35,7 +35,7 @@ ChartJS.register(
 const totalItems = 36; // Number of items
 const sliderMax = 99; // Max value of the slider
 
-function mapToSliderRange(index, totalItems, sliderMax) {
+function mapToSliderRange(index: number, totalItems: number, sliderMax: number) {
   console.log(index, totalItems, sliderMax);
 
   const oldMax = totalItems - 1; // Since index starts from 0
@@ -52,25 +52,23 @@ for (let i = 0; i < totalItems; i++) {
 
 
 
-const processData = (apiData:any) => {
-
+const processData = (apiData: any) => {
   let arrayData = Array.of(apiData.apiData);
-  console.log(arrayData[0]);
   let datum = Array.from(arrayData[0]);
 
-  console.log(datum.length);
+  const labels = datum.map((item: any) => item.HourOfBet);
+  const averageBetAmountData = datum.map((item: any) => parseFloat(item.AverageBetAmount));
+  const cumulativeBetAmount = datum.map((item: any) => parseFloat(item.CumulativeBetAmount));
+  const cumulativeTotalBets = datum.map((item: any) => parseInt(item.CumulativeTotalBets, 10));
+  const totalBetAmount = datum.map((item: any) => parseFloat(item.TotalBetAmount));
+  const totalBets = datum.map((item: any) => parseInt(item.TotalBets, 10));
 
-  const labels = datum.map((item:any) => item.HourOfBet);
-  const averageBetAmountData = datum.map((item:any) => parseFloat(item.AverageBetAmount));
-  const totalBetAmount = datum.map((i:any) => parseFloat(i.TotalBetAmount));
-  const totalBetProbability = datum.map((i:any) => parseInt(i.TotalBetProbability));
-
-  return { labels, averageBetAmountData, totalBetAmount, totalBetProbability };
+  return { labels, averageBetAmountData, cumulativeBetAmount, cumulativeTotalBets, totalBetAmount, totalBets };
 };
 
 
 export default function LineChartApiLoaded(apiData:any, options: any) {
-  let { labels, averageBetAmountData, totalBetAmount, totalBetProbability } = processData(apiData);
+  let { labels, averageBetAmountData, cumulativeBetAmount, cumulativeTotalBets, totalBetAmount, totalBets } = processData(apiData);
 
   const [rangeValue, setRangeValue] = useState<number[]>([0, 99]);
   const [mappedRangeValue, setMappedRangeValue] = useState<number[]>([0, 35]);
@@ -82,53 +80,68 @@ export default function LineChartApiLoaded(apiData:any, options: any) {
   let dataProcessed;
 
   const handleChange = (event: Event, newValue: number | number[]) => {
-    setRangeValue(newValue as number[]);
-
-    console.log(newValue);
-    const start = mapToSliderRange(newValue[0], averageBetAmountData.length, sliderMax);
-    const end = mapToSliderRange(newValue[1], averageBetAmountData.length, sliderMax );
-
-    const startL = mapToSliderRange(newValue[0], labels.length, sliderMax);
-    const endL = mapToSliderRange(newValue[1], labels.length, sliderMax );
-    console.log(labels.length);
-    console.log(startL, endL);
-
-
-    dataProcessed = averageBetAmountData.slice(start,end);
-    console.log(dataProcessed);
-
-    setMappedRangeValue([startL,endL]);
-    console.log(mappedRangeValue);
-    console.log(rangeValue);
-
-    // setRangeValue([start,end]);
-
     console.log(newValue);
   };
+
+  // const handleChange = (event: Event, newValue: number | number[]) => {
+  //   setRangeValue(newValue as number[]);
+
+  //   console.log(newValue);
+  //   const start = mapToSliderRange(newValue[0], averageBetAmountData.length, sliderMax);
+  //   const end = mapToSliderRange(newValue[1], averageBetAmountData.length, sliderMax );
+
+  //   const startL = mapToSliderRange(newValue[0], labels.length, sliderMax);
+  //   const endL = mapToSliderRange(newValue[1], labels.length, sliderMax );
+  //   console.log(labels.length);
+  //   console.log(startL, endL);
+
+
+  //   dataProcessed = averageBetAmountData.slice(start,end);
+  //   console.log(dataProcessed);
+
+  //   setMappedRangeValue([startL,endL]);
+  //   console.log(mappedRangeValue);
+  //   console.log(rangeValue);
+
+  //   // setRangeValue([start,end]);
+
+  //   console.log(newValue);
+  // };
 
 
   let dataset = [
     {
-      label: 'averageBetAmountData',
+      label: 'Average Bet Amount',
       data: averageBetAmountData,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      borderColor: 'yellow',
+      backgroundColor: 'orange',
     },
-    // {
-    //   label: 'totalBetAmount',
-    //   data: totalBetAmount,
-    //   borderColor: 'rgb(255, 99, 132)',
-    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    // },
-    // {
-    //   label: 'totalBetProbability',
-    //   data: totalBetProbability,
-    //   borderColor: 'rgb(255, 99, 132)',
-    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    // },
+    {
+      label: 'Total Bet Amounts',
+      data: totalBetAmount,
+      borderColor: 'green',
+      backgroundColor: 'forestgreen',
+    },
+    {
+      label: 'Total Bets',
+      data: totalBets,
+      borderColor: 'indigo',
+      backgroundColor: 'deeppurple',
+    },
+    {
+      label: 'Cumulative Bet Amount',
+      data: cumulativeBetAmount,
+      borderColor: 'green',
+      backgroundColor: 'forestgreen',
+    },
+    {
+      label: 'Cumulative Total Bets',
+      data: cumulativeTotalBets,
+      borderColor: 'indigo',
+      backgroundColor: 'deeppurple',
+    },
   ];
 
-  //totalBetAmount, totalBetProbability
 
   let data = {
     labels,
@@ -139,15 +152,16 @@ export default function LineChartApiLoaded(apiData:any, options: any) {
   }
 
   return (<>
-    <Line options={options} data={data} />
-    <Box sx={{ width: 300 }}>
-      <Slider
+    <Line options={options} data={data}  style={{margin:'25px',transform:'scale(0.9)'}} />
+    <Box sx={{ width: 300 }} style={{textAlign:'center',margin:'0 auto'}}>
+      <Slider disabled
         getAriaLabel={() => 'Temperature range'}
          value={rangeValue}
         onChange={handleChange}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
       />
+      Time Series by Hour Leading up to Event
     </Box>
   </>);
 }

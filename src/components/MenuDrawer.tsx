@@ -40,7 +40,7 @@ export default function MenuDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <div className='' style={{fontSize:"20px",padding:"0 0 0 15px",margin:"175px 0 20px 0"}}>Time-Series Analysis</div>
+      <div className='' style={{color:"lightblue",fontSize:"20px",padding:"0 0 0 15px",margin:"75px 0 20px 0"}}>Time-Series Analysis</div>
       <Divider />
       <br />
       <List>
@@ -62,13 +62,13 @@ export default function MenuDrawer() {
 
 
 
-      <div className='' style={{fontSize:"20px",padding:"0 0 0 15px",margin:"100px 0 20px 0"}}>Dimensional Analysis</div>
+      <div className='' style={{color:"cadetblue",fontSize:"20px",padding:"0 0 0 15px",margin:"70px 0 20px 0"}}>Dimensional Analysis</div>
       <Divider />
        <List>
        {[
-         { text: 'Bet Selection', link: '/dimensional/bet-selection' },
          { text: 'Hour of Day', link: '/dimensional/hour-of-day' },
-         { text: 'Countries', link: '/dimensional/countries' },
+         { text: 'Bet Selection', link: '/dimensional/bet-selection' },
+        //  { text: 'Countries', link: '/dimensional/countries' },
          { text: 'Single vs Multi', link: '/dimensional/single-vs-multi' },
          { text: 'Line Components', link: '/dimensional/line-components' }, // Add the new item here
        ].map((item, index) => (

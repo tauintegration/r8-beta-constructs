@@ -1,11 +1,10 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
-const datasets = {
+const data = {
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
   datasets: [
     {
@@ -45,40 +44,8 @@ const processData = (apiData: any) => {
   return { labels, totalBetAmount };
 };
 
-/*
-AlternateBets
-:
-"197138"
-AverageComponentCount
-:
-"11.2007"
-AverageComponentPrice
-:
-"759.8003"
-AverageLine
-:
-"12.2217"
-AverageProbability
-:
-"0.4769"
-NumberOfComponents
-:
-479357
-StandardBets
-:
-"282219"
-TotalBookProfitComponent
-:
-"350305"
-TotalBookRiskComponent
-:
-"1592480"
-selection
-:
-"over"
-*/
 
-export default function DoughnutChart(apiData:any, options: any) {
+export default function CountryPortionPieChart(apiData:any, options: any) {
   let { labels, totalBetAmount } = processData(apiData);
 
 
@@ -86,22 +53,21 @@ export default function DoughnutChart(apiData:any, options: any) {
   console.log(labels);
 
 
-  // let dataset = [
-  //   {
-  //     label: 'totalNoBets',
-  //     data: labels,
-  //     borderColor: 'tomato',
-  //     backgroundColor: 'gray',
-  //   },
-  // ];
+  let dataset = [
+    {
+      label: 'totalNoBets',
+      data: totalBetAmount,
+      borderColor: 'tomato',
+      backgroundColor: 'gray',
+    },
+  ];
 
-  // let data = {
-  //   labels,
-  //   datasets
-  // };
-
+  let data = {
+    labels,
+    datasets: dataset,
+  };
   function valuetext(value: number) {
     return `${value}°C`;
   }
-  return <Doughnut options={options} data={datasets}  style={{margin:'5px 50px 40px 5px',display:'flex',transform:'scale(0.90)'}}  />;
+  return <Pie options={options} data={data} style={{margin:'25px',transform:'scale(0.9)'}} />;
 }

@@ -28,7 +28,7 @@ const darkTheme = createTheme({
 
 export default function Page() {
   const [isDarkMode, setIsDarkMode] = useState(true); // State to toggle dark/light mode
-  const [value, setValue] = React.useState<number[]>([20, 37]);
+  const [value, setValue] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const options = {
@@ -75,6 +75,9 @@ export default function Page() {
           <MenuDrawer />
         </AppBar>
       </ThemeProvider>
+
+      <h2 className="pl-10 mb-4 text-3xl font-extrabold leading-none tracking-tight text-orange-400 md:text-4xl dark:text-white">(time-series)</h2>
+      <h1 className="pl-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-500 md:text-5xl lg:text-6xl dark:text-white">Risk and Probabilities</h1>
 
       {isLoading ? (
       <CircularProgress style={{margin:"150px auto"}}/>

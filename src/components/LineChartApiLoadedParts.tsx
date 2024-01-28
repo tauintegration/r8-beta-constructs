@@ -45,13 +45,13 @@ export default function LineChartApiLoadedParts(apiData:any, options: any) {
 
   dataset = [
       {
-        label: 'totalOverBets',
+        label: 'Over',
         data: totalOverBets,
         borderColor: 'blue',
         backgroundColor: 'aqua',
       },
       {
-        label: 'totalUnderBets',
+        label: 'Under',
         data: totalUnderBets,
         borderColor: 'purple',
         backgroundColor: 'goldenrod',
@@ -70,6 +70,6 @@ export default function LineChartApiLoadedParts(apiData:any, options: any) {
   }
 
   return (<>
-    <Line options={options} data={data} />
+    <Line options={options} data={data} style={{margin:'25px',transform:'scale(0.9)'}}/>
   </>);
 }

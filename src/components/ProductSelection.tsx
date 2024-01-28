@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
-export default function Selection() {
+export default function ProductSelection() {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -23,11 +23,10 @@ export default function Selection() {
           label="Age"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Single</MenuItem>
-          <MenuItem value={20}>Multi</MenuItem>
-          <MenuItem value={30}>Both</MenuItem>
+          <MenuItem value={10}>Name of Player</MenuItem>
+          <MenuItem value={20}>Name of Player - 3 Pointer</MenuItem>
         </Select>
-        <InputLabel id="demo-simple-select-label">Single or Multi</InputLabel>
+        <InputLabel id="demo-simple-select-label">Bet Selection</InputLabel>
       </FormControl>
     </Box>
   );

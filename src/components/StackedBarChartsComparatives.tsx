@@ -42,7 +42,7 @@ export const options = {
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-export const data = {
+const data = {
   labels,
   datasets: [
     {
@@ -63,6 +63,43 @@ export const data = {
   ],
 };
 
-export default function StackedBarChartComparatives() {
-  return <Bar options={options} data={data} />;
+
+const processData = (apiData: any) => {
+  let arrayData = Array.of(apiData.apiData);
+  let datum = Array.from(arrayData[0]);
+
+  const labels = datum.map((item: any) => item.HourOfDay);
+  // Map 'AverageBetPrice' and convert it to a floating point number
+  const averageBetPrice = datum.map((item: any) => parseFloat(item.AverageBetPrice));
+
+  return { labels, averageBetPrice };
+};
+
+
+
+export default function StackedBarChartComparatives(apiData:any, options: any) {
+  let { labels, averageBetPrice } = processData(apiData);
+
+
+  console.log(apiData);
+  console.log(labels);
+
+
+  let dataset = [
+    {
+      label: 'Average Bet Price',
+      data: averageBetPrice,
+      borderColor: 'blue',
+      backgroundColor: 'tomato',
+    },
+  ];
+
+  let data = {
+    labels,
+    datasets: dataset,
+  };
+  function valuetext(value: number) {
+    return `${value}°C`;
+  }
+  return <Bar options={options} data={data}  style={{margin:'25px',transform:'scale(0.9)'}}/>;
 }

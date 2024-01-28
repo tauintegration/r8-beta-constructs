@@ -47,13 +47,13 @@ export default function LineChartApiLoadedAlt(apiData:any, options: any) {
 
   let dataset = [
     {
-      label: 'totalNoBets',
+      label: 'No',
       data: totalNoBets,
       borderColor: 'tomato',
       backgroundColor: 'gray',
     },
     {
-      label: 'totalYesBets',
+      label: 'Yes',
       data: totalYesBets,
       borderColor: 'green',
       backgroundColor: 'moccasin',
@@ -69,6 +69,6 @@ export default function LineChartApiLoadedAlt(apiData:any, options: any) {
   }
 
   return (<>
-    <Line options={options} data={data} />
+    <Line options={options} data={data}  style={{margin:'25px',transform:'scale(0.9)'}} />
   </>);
 }

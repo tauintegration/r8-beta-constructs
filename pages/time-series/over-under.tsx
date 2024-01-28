@@ -35,7 +35,6 @@ export default function Page() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  // const [result, error, state] = usePromise( fetch(api_call).then((res) => res.json).then(json_data => console.log(json_data)), []);
   useEffect(() => {
 
       fetch('/api/time-series/over-under/a?parameter=123')
@@ -75,6 +74,8 @@ export default function Page() {
           <MenuDrawer />
         </AppBar>
       </ThemeProvider>
+      <h2 className="pl-10 mb-4 text-3xl font-extrabold leading-none tracking-tight text-pink-800 md:text-4xl dark:text-white">(time-series)</h2>
+      <h1 className="pl-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-blue-500 md:text-5xl lg:text-6xl dark:text-white">Over/Under</h1>
 
       {isLoading ? (
       <CircularProgress style={{margin:"150px auto"}}/>
