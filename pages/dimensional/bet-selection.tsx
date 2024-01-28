@@ -19,21 +19,40 @@ const darkTheme = createTheme({
 
 export default function Page() {
   const [value, setValue] = useState(null);
-
+  const [topic, setTopic] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+
+  let dataList = new Array();
+  dataList.push('test1');
+  dataList.push('test2');
+  dataList.push('test3');
+
+
   useEffect(() => {
+
+      setIsLoading(true);
 
       fetch('/api/dimensional/bet-selection/a?parameter=123')
         .then(response => response.json())
         .then(data => {
-          setValue(data.data);
+          setValue(data);
           console.log(value);
           setIsLoading(false);
         })
         .catch(error => { });
 
   }, []);
+
+  const crossSectionTopicChoice = (choice:any) => {
+
+    setIsLoading(true);
+    console.log(choice.target);
+    // alert('choice made');
+    setTopic(choice.target.value);
+    alert(choice.target.value);
+    alert('use state to redo trigger drop down list and pass into doughnot cross section data by topic');
+  };
 
   const options = {
     responsive: true,
@@ -48,17 +67,18 @@ export default function Page() {
     },
   };
 
+
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={darkTheme}>
         <AppBar position="static" color="primary">
           <h1 style={{color:'skyblue',fontSize:'30px',fontWeight:'none',margin:'0 auto',textAlign:'center',padding:'5px'}}>Bet Market Analysis Dashboard</h1>
           <MenuDrawer />
-          <ProductSelection />
+          <ProductSelection listData={dataList} handler={crossSectionTopicChoice} />
         </AppBar>
       </ThemeProvider>
       <h2 className="pl-10 mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-400 md:text-2xl dark:text-white">(dimensional analysis)</h2>
-      <h1 className="pl-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gold-600 md:text-3xl lg:text-6xl dark:text-white">Bet Selection</h1>
+      <h1 className="pl-10 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gold-600 md:text-3xl lg:text-6xl dark:text-white">Bet Selection Breakdown</h1>
 
       {isLoading ? (
       <CircularProgress style={{margin:"150px auto"}}/>

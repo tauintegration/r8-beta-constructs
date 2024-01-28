@@ -2,6 +2,11 @@ import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
@@ -34,15 +39,15 @@ const datasets = {
 
 
 const processData = (apiData: any) => {
-  let arrayData = Array.of(apiData.apiData);
-  let datum = Array.from(arrayData[0]);
+  // let arrayData = Array.of(apiData.apiData);
+  // et datum = Array.from(arrayData[0]);
 
   // const labels = datum.map((item: any) => item.HourOfBet);
 
-  const labels = datum.map((item: any) => item.CountryID);
-  const totalBetAmount = datum.map((item: any) => parseInt(item.TotalBetAmount));
+  const labellist = apiData.map((item: any) => item.selection);
+  // const averageProbability = datum.map((item: any) => parseInt(item.AverageProbability));
 
-  return { labels, totalBetAmount };
+  return { labellist };
 };
 
 /*
@@ -79,13 +84,14 @@ selection
 */
 
 export default function DoughnutChart(apiData:any, options: any) {
-  let { labels, totalBetAmount } = processData(apiData);
 
 
   console.log(apiData);
+  const labels = apiData.apiData.data; //.map((item: any) => item.selection);
+
   console.log(labels);
-
-
+  const list = processData(labels);
+  console.log(list);
   // let dataset = [
   //   {
   //     label: 'totalNoBets',
@@ -99,9 +105,66 @@ export default function DoughnutChart(apiData:any, options: any) {
   //   labels,
   //   datasets
   // };
+  function handler() { };
 
   function valuetext(value: number) {
     return `${value}°C`;
   }
-  return <Doughnut options={options} data={datasets}  style={{margin:'5px 50px 40px 5px',display:'flex',transform:'scale(0.90)'}}  />;
+  const listOut = list.labellist.map((label, index) => (
+    <MenuItem key={index} value={index}>{label}</MenuItem>
+  ));
+
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Box sx={{ minWidth: 400, maxWidth: 500 }} style={{ margin: '10px' }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Bet Selection</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={1}
+            label="Age"
+            onChange={handler}
+          >
+            {listOut}
+          </Select>
+        </FormControl>
+      </Box>
+
+      <Box>
+      <Doughnut options={options} data={datasets}  style={{margin:'5px 50px 40px 5px',display:'flex',transform:'scale(0.90)'}}  />
+      </Box>
+    </Box>
+  );
 }
+
+
+
+const YourComponent = ({ labellist, age, handler }) => {
+  const listOut = labellist.map((label, index) => (
+    <MenuItem key={index} value={index}>{label}</MenuItem>
+  ));
+
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Box sx={{ minWidth: 400, maxWidth: 500 }} style={{ margin: '10px' }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Bet Selection</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={age}
+            label="Age"
+            onChange={handler}
+          >
+            {listOut}
+          </Select>
+        </FormControl>
+      </Box>
+
+      <Box>
+      <Doughnut options={options} data={datasets}  style={{margin:'5px 50px 40px 5px',display:'flex',transform:'scale(0.90)'}}  />
+      </Box>
+    </Box>
+  );
+};
