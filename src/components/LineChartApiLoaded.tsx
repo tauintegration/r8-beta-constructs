@@ -26,39 +26,17 @@ ChartJS.register(
 );
 
 
-interface ApiData {
-  apiData: any[]; // Replace `any[]` with a more specific type if possible
-}
 
-const processData = (apiData: ApiData | undefined) => {
-
-  let arrayData = [];
-  if (apiData && apiData.apiData) {
-    arrayData = apiData.apiData;
-
-  }
-
-<<<<<<< Updated upstream
-=======
 const processData = (apiData:any) => {
->>>>>>> Stashed changes
 
+  let arrayData = Array.of(apiData.apiData);
   console.log(arrayData[0]);
-  let datum = Array.from(arrayData[0] as any[]);
-  const labels = datum.map((item: any) => item.HourOfBet);
+  let datum = Array.from(arrayData[0]);
 
-<<<<<<< Updated upstream
-  const averageBetAmountData = datum.map(item => parseFloat(item.AverageBetAmount));
-  const totalBetAmount = datum.map(i => parseFloat(i.TotalBetAmount));
-  const totalBetProbability = datum.map(i => parseInt(i.TotalBetProbability));
-=======
-  const labels = datum.map((item: any) => item.HourOfBet);
-
-//   const labels = datum.map(item => item.HourOfBet);
-  const averageBetAmountData = datum.map((item: any) => parseFloat(item.AverageBetAmount));
-  const totalBetAmount = datum.map((item: any) => parseFloat(item.TotalBetAmount));
-  const totalBetProbability = datum.map((item: any) => parseInt(item.TotalBetProbability));
->>>>>>> Stashed changes
+  const labels = datum.map((item:any) => item.HourOfBet);
+  const averageBetAmountData = datum.map((item:any) => parseFloat(item.AverageBetAmount));
+  const totalBetAmount = datum.map((i:any) => parseFloat(i.TotalBetAmount));
+  const totalBetProbability = datum.map((i:any) => parseInt(i.TotalBetProbability));
 
   return { labels, averageBetAmountData, totalBetAmount, totalBetProbability };
 };
@@ -72,16 +50,10 @@ export default function LineChartApiLoaded(apiData:any, options: any) {
   let dataset = [
     {
       label: 'averageBetAmountData',
-      data: totalBetAmount,
+      data: averageBetAmountData,
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
-    // {
-    //   label: 'averageBetAmountData',
-    //   data: averageBetAmountData,
-    //   borderColor: 'rgb(255, 99, 132)',
-    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    // },
     // {
     //   label: 'totalBetAmount',
     //   data: totalBetAmount,
