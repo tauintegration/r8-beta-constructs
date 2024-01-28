@@ -10,6 +10,8 @@ import Box from '@mui/material/Box';
 import usePromise from 'react-use-promise';
 import ApiCaller from '@/src/components/ApiCaller';
 import LineChartApiLoaded from '@/src/components/LineChartApiLoaded';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -33,6 +35,7 @@ const api_call = '/api/time-series/totals-averages?index=a&parameter=123';
 export default function Page() {
   const [isDarkMode, setIsDarkMode] = useState(true); // State to toggle dark/light mode
   const [value, setValue] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   // const [result, error, state] = usePromise( fetch(api_call).then((res) => res.json).then(json_data => console.log(json_data)), []);
   useEffect(() => {
@@ -42,6 +45,7 @@ export default function Page() {
         .then(data => {
           setValue(data.data);
           console.log(value);
+          setIsLoading(false); // Set loading to false once data is read
         })
         .catch(error => {
        });
@@ -69,8 +73,10 @@ export default function Page() {
     setValue(newValue as number[]);
     // console.log(newValue);
   };
+
   return (
     <Stack spacing={2} sx={{ flexGrow: 1 }}>
+
       <ThemeProvider theme={darkTheme}>
         <AppBar position="static" color="primary">
           <h1 style={{color:'skyblue',fontSize:'30px',fontWeight:'none',margin:'0 auto',textAlign:'center',padding:'5px'}}>Bet Market Analysis Dashboard</h1>
@@ -79,7 +85,12 @@ export default function Page() {
         </AppBar>
       </ThemeProvider>
 
+      {isLoading ? (
+      <CircularProgress /> // Show loader when data is loading
+    ) : (
       <LineChartApiLoaded options={options} apiData={value} />
+    )}
+
       <Box sx={{ width: 300 }}>
       <Slider
         getAriaLabel={() => 'Temperature range'}
