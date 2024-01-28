@@ -48,6 +48,18 @@ export default function Page() {
 
   }, []);
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+      },
+      title: {
+        display: true,
+        text: 'Total Bets',
+      },
+    },
+  };
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
@@ -67,7 +79,7 @@ export default function Page() {
         </AppBar>
       </ThemeProvider>
 
-      <LineChartApiLoaded apiData={value} />
+      <LineChartApiLoaded options={options} apiData={value} />
       <Box sx={{ width: 300 }}>
       <Slider
         getAriaLabel={() => 'Temperature range'}

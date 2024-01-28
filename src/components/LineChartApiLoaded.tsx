@@ -25,103 +25,54 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
 
 
-// export const data = {
-//   labels,
-//   datasets: [
-//     {
-//       label: 'Dataset 1',
-//       data: labels.map(() => chance.integer({ min: -1000, max: 1000 })),
-//       borderColor: 'rgb(255, 99, 132)',
-//       backgroundColor: 'rgba(255, 99, 132, 0.5)',
-//     },
-//     // {
-//     //   label: 'Dataset 2',
-//     //   data: labels.map(() => chance.integer({ min: -1000, max: 1000 })),
-//     //   borderColor: 'rgb(53, 162, 235)',
-//     //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
-//     // },
-//     // {
-//     //   label: 'Dataset 3',
-//     //   data: labels.map(() => chance.integer({ min: -1000, max: 1000 })),
-//     //   borderColor: 'green',
-//     //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
-//     // },
-//   ],
-// };
-
-const processData = (apiData:any) => {
-  // console.log(apiData.apiData);
+const processData = (apiData:object) => {
 
   let arrayData = Array.of(apiData.apiData);
   console.log(arrayData[0]);
   let datum = Array.from(arrayData[0]);
 
-  /*
-  const labels = apiData.apiData.map(item => item.HourOfBet);
-  const averageBetAmountData = apiData.apiData.map(item => parseFloat(item.AverageBetAmount));
-
-  return { labels, averageBetAmountData };
-  */
   const labels = datum.map(item => item.HourOfBet);
   const averageBetAmountData = datum.map(item => parseFloat(item.AverageBetAmount));
+  const totalBetAmount = datum.map(i => parseFloat(i.TotalBetAmount));
+  const totalBetProbability = datum.map(i => parseInt(i.TotalBetProbability));
 
-
-  return { labels, averageBetAmountData };
+  return { labels, averageBetAmountData, totalBetAmount, totalBetProbability };
 };
 
 
-
-export default function LineChartApiLoaded(apiData:any) {
-  const { labels, averageBetAmountData } = processData(apiData);
-  // processData(apiData);
+export default function LineChartApiLoaded(apiData:any, options: any) {
+  const { labels, averageBetAmountData, totalBetAmount, totalBetProbability } = processData(apiData);
 
   console.log(apiData);
   console.log(labels);
   let dataset = [
     {
+      label: 'averageBetAmountData',
       data: averageBetAmountData,
-     //  labels.map(() => chance.integer({ min: -1000, max: 1000 })),
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
+    // {
+    //   label: 'totalBetAmount',
+    //   data: totalBetAmount,
+    //   borderColor: 'rgb(255, 99, 132)',
+    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    // },
+    // {
+    //   label: 'totalBetProbability',
+    //   data: totalBetProbability,
+    //   borderColor: 'rgb(255, 99, 132)',
+    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    // },
   ];
 
-
-  /*
-  dataset = averageBetAmountData.map((i, index) => {
-    return {
-      data: Array.from({ length: labels.length }, () => chance.integer({ min: -1000, max: 1000 })),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    };
-  });
-  */
+  //totalBetAmount, totalBetProbability
 
   let data = {
     labels,
     datasets: dataset,
-    /* [
-      {
-        data: labels.map(() => chance.integer({ min: -1000, max: 1000 })),
-        // data: averageBetAmountData,
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-    ], */
   };
 
   return <Line options={options} data={data} />;
