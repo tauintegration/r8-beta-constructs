@@ -52,25 +52,23 @@ for (let i = 0; i < totalItems; i++) {
 
 
 
-const processData = (apiData:any) => {
-
+const processData = (apiData: any) => {
   let arrayData = Array.of(apiData.apiData);
-  console.log(arrayData[0]);
   let datum = Array.from(arrayData[0]);
 
-  console.log(datum.length);
+  const labels = datum.map((item: any) => item.HourOfBet);
+  const averageBetAmountData = datum.map((item: any) => parseFloat(item.AverageBetAmount));
+  const cumulativeBetAmount = datum.map((item: any) => parseFloat(item.CumulativeBetAmount));
+  const cumulativeTotalBets = datum.map((item: any) => parseInt(item.CumulativeTotalBets, 10));
+  const totalBetAmount = datum.map((item: any) => parseFloat(item.TotalBetAmount));
+  const totalBets = datum.map((item: any) => parseInt(item.TotalBets, 10));
 
-  const labels = datum.map((item:any) => item.HourOfBet);
-  const averageBetAmountData = datum.map((item:any) => parseFloat(item.AverageBetAmount));
-  const totalBetAmount = datum.map((i:any) => parseFloat(i.TotalBetAmount));
-  const totalBetProbability = datum.map((i:any) => parseInt(i.TotalBetProbability));
-
-  return { labels, averageBetAmountData, totalBetAmount, totalBetProbability };
+  return { labels, averageBetAmountData, cumulativeBetAmount, cumulativeTotalBets, totalBetAmount, totalBets };
 };
 
 
-export default function LineChartApiLoaded(apiData:any, options: any) {
-  let { labels, averageBetAmountData, totalBetAmount, totalBetProbability } = processData(apiData);
+export default function MultiLineChartApiLoaded(apiData:any, options: any) {
+  let { labels, averageBetAmountData, cumulativeBetAmount, cumulativeTotalBets, totalBetAmount, totalBets } = processData(apiData);
 
   const [rangeValue, setRangeValue] = useState<number[]>([0, 99]);
   const [mappedRangeValue, setMappedRangeValue] = useState<number[]>([0, 35]);
@@ -108,24 +106,24 @@ export default function LineChartApiLoaded(apiData:any, options: any) {
 
 
   let dataset = [
+    // {
+    //   label: 'averageBetAmountData',
+    //   data: dataProcessed,
+    //   borderColor: 'rgb(255, 99, 132)',
+    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    // },
     {
-      label: 'averageBetAmountData',
-      data: averageBetAmountData,
-      borderColor: 'rgb(255, 99, 132)',
+      label: 'cumulativeBetAmount',
+      data: cumulativeBetAmount,
+      borderColor: 'orange',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
-    // {
-    //   label: 'totalBetAmount',
-    //   data: totalBetAmount,
-    //   borderColor: 'rgb(255, 99, 132)',
-    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    // },
-    // {
-    //   label: 'totalBetProbability',
-    //   data: totalBetProbability,
-    //   borderColor: 'rgb(255, 99, 132)',
-    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    // },
+    {
+      label: 'cumulativeTotalBets',
+      data: cumulativeTotalBets,
+      borderColor: 'teal',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
   ];
 
   //totalBetAmount, totalBetProbability
@@ -140,14 +138,5 @@ export default function LineChartApiLoaded(apiData:any, options: any) {
 
   return (<>
     <Line options={options} data={data} />
-    <Box sx={{ width: 300 }}>
-      <Slider
-        getAriaLabel={() => 'Temperature range'}
-         value={rangeValue}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
-      />
-    </Box>
   </>);
 }
