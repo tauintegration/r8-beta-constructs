@@ -90,7 +90,7 @@ export default function Page() {
           // console.log(data);
 
           // if(!!value) { labels = value.data.map((item: any) => item.selection); console.log(labels); }
-          setIsLoading(true); //
+          setIsLoading(false); //
         })
         .catch(error => { });
 
