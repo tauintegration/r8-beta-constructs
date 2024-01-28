@@ -110,7 +110,7 @@ export default function DoughnutChart(apiData:any, options: any) {
   function valuetext(value: number) {
     return `${value}°C`;
   }
-  const listOut = list.labellist.map((label, index) => (
+  const listOut = list.labellist.map((label: any, index: any) => (
     <MenuItem key={index} value={index}>{label}</MenuItem>
   ));
 
@@ -140,31 +140,31 @@ export default function DoughnutChart(apiData:any, options: any) {
 
 
 
-const YourComponent = ({ labellist, age, handler }) => {
-  const listOut = labellist.map((label, index) => (
-    <MenuItem key={index} value={index}>{label}</MenuItem>
-  ));
+// const YourComponent = ({ labellist, age, handler }) => {
+//   const listOut = labellist.map((label, index) => (
+//     <MenuItem key={index} value={index}>{label}</MenuItem>
+//   ));
 
-  return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Box sx={{ minWidth: 400, maxWidth: 500 }} style={{ margin: '10px' }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Bet Selection</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age"
-            onChange={handler}
-          >
-            {listOut}
-          </Select>
-        </FormControl>
-      </Box>
+//   return (
+//     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+//       <Box sx={{ minWidth: 400, maxWidth: 500 }} style={{ margin: '10px' }}>
+//         <FormControl fullWidth>
+//           <InputLabel id="demo-simple-select-label">Bet Selection</InputLabel>
+//           <Select
+//             labelId="demo-simple-select-label"
+//             id="demo-simple-select"
+//             value={age}
+//             label="Age"
+//             onChange={handler}
+//           >
+//             {listOut}
+//           </Select>
+//         </FormControl>
+//       </Box>
 
-      <Box>
-      <Doughnut options={options} data={datasets}  style={{margin:'5px 50px 40px 5px',display:'flex',transform:'scale(0.90)'}}  />
-      </Box>
-    </Box>
-  );
-};
+//       <Box>
+//       <Doughnut options={options} data={datasets}  style={{margin:'5px 50px 40px 5px',display:'flex',transform:'scale(0.90)'}}  />
+//       </Box>
+//     </Box>
+//   );
+// };

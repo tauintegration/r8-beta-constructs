@@ -15,7 +15,7 @@ export default function ProductSelection(nonDestructedProps:any) {
   // const listDatum = new Array(nonDestructedProps.listData);
   const listDatum = nonDestructedProps.listData;
 
-  const listOut = listDatum.map((item, index) => (
+  const listOut = listDatum.map((item: any, index: any) => (
     <MenuItem key={index} value={item.toString()}>{item}</MenuItem>
   ));
 
