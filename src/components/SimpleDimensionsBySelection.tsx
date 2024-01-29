@@ -188,7 +188,7 @@ topSelection
 
   if (apiData && apiData.data && apiData.data.length > 17) {
     console.log(apiData.data[parseInt(topSelection)]);
-    const itemData = apiData.data[parseInt(topSelection)];
+    const itemData = apiData.data[parseInt(topSelection)] || {};
 
     new_data_large = {
       labels: ['Per Dropdown Selection'],
@@ -200,12 +200,12 @@ topSelection
         // },
         {
           label: 'Dat 2',
-          data: itemData.AverageComponentCount, //labels.map(() => 1000),
+          data: (itemData && itemData.AverageComponentCount !== undefined)?itemData.AverageComponentCount:null,
           backgroundColor: 'rgb(75, 192, 192)',
         },
         {
           label: 'Data 3',
-          data: itemData.StandardBets, //labels.map(() => -1000),
+          data: (itemData && itemData.StandardBets !== undefined)?itemData.StandardBets:null,
           backgroundColor: 'rgb(53, 162, 235)',
         },
       ],
