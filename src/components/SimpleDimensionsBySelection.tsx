@@ -109,6 +109,65 @@ export default function SimpleDimensionsBySelection({ apiData, options, topSelec
 /*
 apiData
 :
+
+lternateBets
+:
+"0"
+AverageComponentCount
+:
+"2.0000"
+AverageComponentPrice
+:
+"375.0000"
+AverageLine
+:
+null
+AverageProbability
+:
+null
+NumberOfComponents
+:
+1
+StandardBets
+:
+"1"
+TotalBookProfitComponent
+:
+"0"
+TotalBookRiskComponent
+:
+"0"
+selection
+:
+"john collins"
+*/
+
+
+
+let new_data_large = {
+  labels: ['Per Dropdown Selection'],
+  datasets: [
+    // {
+    //   label: 'Dat 1',
+    //   data: labels.map(() => (Math.random()*1000)),
+    //   backgroundColor: 'rgb(255, 99, 132)',
+    // },
+    {
+      label: 'Dat 2',
+      data: labels.map(() => 1000),
+      backgroundColor: 'rgb(75, 192, 192)',
+    },
+    {
+      label: 'Data 3',
+      data: labels.map(() => -1000),
+      backgroundColor: 'rgb(53, 162, 235)',
+    },
+  ],
+};
+
+
+/*
+
 {selection: 'no', NumberOfComponents: 239, AverageComponentPrice: '-1437.5397', TotalBookRiskComponent: '3205', TotalBookProfitComponent: '4', …}
 options
 :
@@ -120,27 +179,42 @@ topSelection
 :
 3
 */
+  console.log(apiData.data);
+  console.log(topSelection);
+  console.log(typeof apiData.data);
+// ajsonArray.splice(16, 1);
+  // const jsonArray = JSON.parse(apiData.data);
+  // console.log(apiData.data[17]); // [topSelection]);
 
-  const new_data_large = {
-    labels: ['Per Dropdown Selection'],
-    datasets: [
-      {
-        label: 'Dat 1',
-        data: labels.map(() => (Math.random()*1000)),
-        backgroundColor: 'rgb(255, 99, 132)',
-      },
-      {
-        label: 'Dat 2',
-        data: labels.map(() => 1000),
-        backgroundColor: 'rgb(75, 192, 192)',
-      },
-      {
-        label: 'Data 3',
-        data: labels.map(() => -1000),
-        backgroundColor: 'rgb(53, 162, 235)',
-      },
-    ],
-  };
+  if (apiData && apiData.data && apiData.data.length > 17) {
+    console.log(apiData.data[parseInt(topSelection)]);
+    const itemData = apiData.data[parseInt(topSelection)];
+
+    new_data_large = {
+      labels: ['Per Dropdown Selection'],
+      datasets: [
+        // {
+        //   label: 'Dat 1',
+        //   data: labels.map(() => (Math.random()*1000)),
+        //   backgroundColor: 'rgb(255, 99, 132)',
+        // },
+        {
+          label: 'Dat 2',
+          data: itemData.AverageComponentCount, //labels.map(() => 1000),
+          backgroundColor: 'rgb(75, 192, 192)',
+        },
+        {
+          label: 'Data 3',
+          data: itemData.StandardBets, //labels.map(() => -1000),
+          backgroundColor: 'rgb(53, 162, 235)',
+        },
+      ],
+    };
+
+  } else {
+    console.log('apiData.data is undefined or does not have 18 elements');
+  }
+
 
 
   return (<>

@@ -66,8 +66,8 @@ export default function MenuDrawer() {
       <Divider />
        <List>
        {[
-         { text: 'Hour of Day', link: '/dimensional/hour-of-day' },
          { text: 'Bet Selection', link: '/dimensional/bet-selection' },
+         { text: 'Hour of Day', link: '/dimensional/hour-of-day' },
         //  { text: 'Countries', link: '/dimensional/countries' },
          { text: 'Single vs Multi', link: '/dimensional/single-vs-multi' },
          { text: 'Line Components', link: '/dimensional/line-components' }, // Add the new item here
