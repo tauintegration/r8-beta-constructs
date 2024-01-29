@@ -2,8 +2,8 @@ import mysql from 'mysql2/promise';
 
 var a2_mysql_h="mi3-ts13.a2hosting.com";
 var a2_mysql_d="fronten2_bet_market";
-var a2_mysql_u="fronten2_root"; // change before heading out
-var a2_mysql_p="admin";
+var a2_mysql_u="fronten2_demo_user_24";
+var a2_mysql_p="expiresin30days";
 
 
 // Create the connection pool. The pool-specific settings are the defaults
@@ -16,7 +16,3 @@ export const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0
 });
-
-
-
-// export default mysqlconfigd;
