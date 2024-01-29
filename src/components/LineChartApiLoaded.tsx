@@ -153,7 +153,7 @@ export default function LineChartApiLoaded(apiData:any, options: any) {
 
   return (<>
     <Line options={options} data={data}  style={{margin:'25px',transform:'scale(0.9)'}} />
-    <Box sx={{ width: 300 }} style={{textAlign:'center',margin:'0 auto'}}>
+    <Box sx={{ width: 300 }} style={{textAlign:'center',margin:'0 auto',display:'none'}}>
       <Slider disabled
         getAriaLabel={() => 'Temperature range'}
          value={rangeValue}
