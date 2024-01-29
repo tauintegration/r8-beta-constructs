@@ -3,7 +3,6 @@ import { pool } from '@/lib/mysql2';
 export default async function handler(req, res) {
   const { index, parameter } = req.query;
 
-  //  curl http://localhost:3000/api/dimensional/line-components/uri?parameter=123
   console.log(index); // book_risk is the value since [param] dynamic name maps to this value
   console.log(parameter);
   const sql_ = `
@@ -25,10 +24,6 @@ export default async function handler(req, res) {
   ORDER BY
       NumberOfComponents DESC;
   `;
-
-  // const sql_ = `
-  // SELECT selection, COUNT(*) AS NumberOfComponents, AVG(component_price) AS AverageComponentPrice, SUM(book_risk_component) AS TotalBookRiskComponent FROM BetComponents GROUP BY selection ORDER BY NumberOfComponents DESC;
-  // `;
 
   try {
     const [rows, fields] = await pool.query(sql_, [index]); // WHERE column_name = ?

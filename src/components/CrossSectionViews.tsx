@@ -86,9 +86,7 @@ let data_large = {
 };
 
 const processDataList = (apiData: any) => {
-  // const labels = datum.map((item: any) => item.HourOfBet);
   const labellist = apiData.map((item: any) => item.selection);
-  // const averageProbability = datum.map((item: any) => parseInt(item.AverageProbability));
 
   return { labellist };
 };
@@ -117,29 +115,8 @@ export default function CrossSectionViews(apiData:any, options: any) {
     const selectedItem = apiData.apiData.data.find((item:any) => item.selection === "under");
 
     console.log(selectedItem);
-
-    /*
-    AlternateBets
-:
-AverageComponentCount : "6.2451"
-AverageProbability : "0.6845"
-
-AverageComponentPrice : "775.1361"
-
-AverageLine : "12.7412"
-
-NumberOfComponents : 24830
-StandardBets : "24830"
-
-TotalBookProfitComponent : "-5321"
-TotalBookRiskComponent : "284162"
-
-selection : "under"*/
-
     console.log(data);
     console.log(data_large);
-
-    // TotalBookProfitComponent : "-5321" TotalBookRiskComponent : "284162"
 
     data.datasets[0].label = 'TotalBookRisk';
     data.datasets[0].data[0] = selectedItem.TotalBookRiskComponent;
@@ -203,48 +180,11 @@ selection : "under"*/
     };
 
 
-
-
-
     // Update state with new data objects
     setChartData(newData);
     setChartDataLarge(newDataLarge);
 
   }, [selectedValue, apiData, data]);
-
-
-
-//   useEffect(() => {
-
-//     setIsLoading(true);
-
-//     fetch('/api/dimensional/bet-selection/a?parameter=123')
-//       .then(response => response.json())
-//       .then(data => {
-//         setValue(data);
-
-//         // let {
-//         //   labels,
-//         //   alternateBets,
-//         //   averageComponentCount,
-//         //   averageComponentPrice,
-//         //   averageLine,
-//         //   averageProbability,
-//         //   numberOfComponents,
-//         //   standardBets,
-//         //   totalBookProfitComponent,
-//         //   totalBookRiskComponent
-//         // } = processDataAtContainer(data);
-
-//         console.log(value);
-//         // console.log(data);
-
-//         // if(!!value) { labels = value.data.map((item: any) => item.selection); console.log(labels); }
-//         setIsLoading(false); //
-//       })
-//       .catch(error => { });
-
-// }, []);
 
 
 

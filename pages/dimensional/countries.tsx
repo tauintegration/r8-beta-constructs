@@ -1,9 +1,7 @@
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Selection from '@/src/components/Selection';
 import MenuDrawer from '@/src/components/MenuDrawer';
-import BasicPie from '@/src/components/BasicPie';
 import CountryPortionPieChart from '@/src/components/CountryPortionPieChart';
 
 import React, { useEffect, useState } from 'react';
@@ -19,9 +17,7 @@ const darkTheme = createTheme({
 
 
 export default function Page() {
-  const [isDarkMode, setIsDarkMode] = useState(true); // State to toggle dark/light mode
   const [value, setValue] = useState({});
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

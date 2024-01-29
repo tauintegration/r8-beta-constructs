@@ -5,8 +5,7 @@ import { pool } from '@/lib/mysql2';
 export default async function handler(req, res) {
   const { index, parameter } = req.query;
 
-  // url http://localhost:3000/api/book_risk?parameter=123
-  console.log(index); // book_risk is the value since [param] dynamic name maps to this value
+  console.log(index);
   console.log(parameter);
 
   const sql_totals_and_averages = `

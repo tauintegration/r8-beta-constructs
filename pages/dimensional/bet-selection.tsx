@@ -20,7 +20,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
-import { join } from 'path';
 
 ChartJS.register(
   CategoryScale,
@@ -41,73 +40,11 @@ const darkTheme = createTheme({
 });
 
 
-// const processDataAtContainer = (apiData: any) => {
-//   let arrayData = Array.of(apiData.apiData);
-//   let datum = Array.from(arrayData[0]);
-
-//   const labels = datum.map((item: any) => item.selection);
-//   const alternateBets = datum.map((item: any) => parseInt(item.AlternateBets, 10));
-//   const averageComponentCount = datum.map((item: any) => parseFloat(item.AverageComponentCount));
-//   const averageComponentPrice = datum.map((item: any) => parseFloat(item.AverageComponentPrice));
-//   const averageLine = datum.map((item: any) => parseFloat(item.AverageLine));
-//   const averageProbability = datum.map((item: any) => parseFloat(item.AverageProbability));
-//   const numberOfComponents = datum.map((item: any) => item.NumberOfComponents);
-//   const standardBets = datum.map((item: any) => parseInt(item.StandardBets, 10));
-//   const totalBookProfitComponent = datum.map((item: any) => parseInt(item.TotalBookProfitComponent, 10));
-//   const totalBookRiskComponent = datum.map((item: any) => parseInt(item.TotalBookRiskComponent, 10));
-
-//   return {
-//     labels,
-//     alternateBets,
-//     averageComponentCount,
-//     averageComponentPrice,
-//     averageLine,
-//     averageProbability,
-//     numberOfComponents,
-//     standardBets,
-//     totalBookProfitComponent,
-//     totalBookRiskComponent
-//   };
-// };
-
-
 const processDataBySelection = (clickValue: any, originalData: any) => {
-  // let arrayData = Array.of(apiData.apiData);
-  // let datum = Array.from(arrayData[0]);
-  // console.log(clickValue);
   console.log(originalData.data[clickValue]);
 
-
-  // const labels = datum.map((item: any) => item.selection);
-  // const alternateBets = datum.map((item: any) => parseInt(item.AlternateBets, 10));
-  // const averageComponentCount = datum.map((item: any) => parseFloat(item.AverageComponentCount));
-  // const averageComponentPrice = datum.map((item: any) => parseFloat(item.AverageComponentPrice));
-  // const averageLine = datum.map((item: any) => parseFloat(item.AverageLine));
-  // const averageProbability = datum.map((item: any) => parseFloat(item.AverageProbability));
-  // const numberOfComponents = datum.map((item: any) => item.NumberOfComponents);
-  // const standardBets = datum.map((item: any) => parseInt(item.StandardBets, 10));
-  // const totalBookProfitComponent = datum.map((item: any) => parseInt(item.TotalBookProfitComponent, 10));
-  // const totalBookRiskComponent = datum.map((item: any) => parseInt(item.TotalBookRiskComponent, 10));
-
-  // return {
-  //   labels,
-  //   alternateBets,
-  //   averageComponentCount,
-  //   averageComponentPrice,
-  //   averageLine,
-  //   averageProbability,
-  //   numberOfComponents,
-  //   standardBets,
-  //   totalBookProfitComponent,
-  //   totalBookRiskComponent
-  // };
   return { clickValueSet: originalData.data[clickValue], value: originalData }
 };
-
-// const list_items = (data_list: any) => {
-//   console.log(data_list);
-//   alert('hi');
-// };
 
 export default function Page() {
   const [value, setValue] = useState([]);
@@ -115,25 +52,15 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedValue, setSelectedValue] = useState('');
 
-    // const listOut = list.labellist.map((label: any, index: any) => ( <MenuItem key={index} value={index}>{label}</MenuItem>));
-  // const selectedValue = '2131';
   const handleChange = (event:any) => {
     setSelectedValue(event.target.value);
     const filteredRow = processDataBySelection(event.target.value, value);
     console.log(value);
-    //alert(event.target.value);
     console.log(filteredRow);
     setValue(filteredRow.clickValueSet);
 
     setTopic(event.target.value);
-    //alert(selectedValue);
-    // alert(list.labellist[selectedValue]);
   };
-
-  // let dataList = new Array();
-  // dataList.push('test1');
-  // dataList.push('test2');
-  // dataList.push('test3');
 
   let labels;
 
@@ -146,38 +73,13 @@ export default function Page() {
         .then(data => {
           setValue(data);
 
-          // let {
-          //   labels,
-          //   alternateBets,
-          //   averageComponentCount,
-          //   averageComponentPrice,
-          //   averageLine,
-          //   averageProbability,
-          //   numberOfComponents,
-          //   standardBets,
-          //   totalBookProfitComponent,
-          //   totalBookRiskComponent
-          // } = processDataAtContainer(data);
-
           console.log(value);
-          // console.log(data);
-
-          // if(!!value) { labels = value.data.map((item: any) => item.selection); console.log(labels); }
-          setIsLoading(false); //
+          setIsLoading(false);
         })
         .catch(error => { });
 
   }, [topic]);
 
-  // const crossSectionTopicChoice = (choice:any) => {
-
-  //   setIsLoading(true);
-  //   console.log(choice.target);
-  //   // alert('choice made');
-  //   setTopic(choice.target.value);
-  //   alert(choice.target.value);
-  //   alert('use state to redo trigger drop down list and pass into doughnot cross section data by topic');
-  // };
 
   const options = {
     responsive: true,
@@ -205,8 +107,6 @@ export default function Page() {
   const listOut = list.labellist.map((label: any, index: any) => (
     <MenuItem key={index} value={index}> {label} </MenuItem>
   ));
-
-
 
 
   return (

@@ -9,7 +9,6 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
 const datasets = {
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
   datasets: [
@@ -39,13 +38,8 @@ const datasets = {
 
 
 const processData = (apiData: any) => {
-  // let arrayData = Array.of(apiData.apiData);
-  // et datum = Array.from(arrayData[0]);
-
-  // const labels = datum.map((item: any) => item.HourOfBet);
 
   const labellist = apiData.map((item: any) => item.selection);
-  // const averageProbability = datum.map((item: any) => parseInt(item.AverageProbability));
 
   return { labellist };
 };
@@ -70,61 +64,11 @@ export default function DoughnutChart(apiData:any, options: any) {
 
   useEffect(() => {
     const updatedData = {};
-    // some chartDataUpdater(selectedValue);
-
-    // fetch('/api/dimensional/bet-selection/a?parameter=123')
-    //   .then(response => response.json())
-    //   .then((data:any) => {
-    //     // setValue(data);
-    //     console.log(data);
-
-    //     // setChartData(updatedData);
-    //     setChartData(data);
-    //     console.log(chartData);
     const selectedItem = apiData.apiData.data.find((item:any) => item.selection === "under");
 
-    //     const selectedItem = data.find((item:any) => item.selection === selectedValue);
     console.log(selectedItem);
 
-    //    })
-    //    .catch(error => { });
-
   }, [selectedValue]);
-
-
-
-//   useEffect(() => {
-
-//     setIsLoading(true);
-
-//     fetch('/api/dimensional/bet-selection/a?parameter=123')
-//       .then(response => response.json())
-//       .then(data => {
-//         setValue(data);
-
-//         // let {
-//         //   labels,
-//         //   alternateBets,
-//         //   averageComponentCount,
-//         //   averageComponentPrice,
-//         //   averageLine,
-//         //   averageProbability,
-//         //   numberOfComponents,
-//         //   standardBets,
-//         //   totalBookProfitComponent,
-//         //   totalBookRiskComponent
-//         // } = processDataAtContainer(data);
-
-//         console.log(value);
-//         // console.log(data);
-
-//         // if(!!value) { labels = value.data.map((item: any) => item.selection); console.log(labels); }
-//         setIsLoading(false); //
-//       })
-//       .catch(error => { });
-
-// }, []);
-
 
 
   const listOut = list.labellist.map((label: any, index: any) => (

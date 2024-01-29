@@ -27,10 +27,6 @@ ChartJS.register(
   Legend
 );
 
-
-
-
-
 // Usage
 const totalItems = 36; // Number of items
 const sliderMax = 99; // Max value of the slider
@@ -82,31 +78,6 @@ export default function LineChartApiLoaded(apiData:any, options: any) {
   const handleChange = (event: Event, newValue: number | number[]) => {
     console.log(newValue);
   };
-
-  // const handleChange = (event: Event, newValue: number | number[]) => {
-  //   setRangeValue(newValue as number[]);
-
-  //   console.log(newValue);
-  //   const start = mapToSliderRange(newValue[0], averageBetAmountData.length, sliderMax);
-  //   const end = mapToSliderRange(newValue[1], averageBetAmountData.length, sliderMax );
-
-  //   const startL = mapToSliderRange(newValue[0], labels.length, sliderMax);
-  //   const endL = mapToSliderRange(newValue[1], labels.length, sliderMax );
-  //   console.log(labels.length);
-  //   console.log(startL, endL);
-
-
-  //   dataProcessed = averageBetAmountData.slice(start,end);
-  //   console.log(dataProcessed);
-
-  //   setMappedRangeValue([startL,endL]);
-  //   console.log(mappedRangeValue);
-  //   console.log(rangeValue);
-
-  //   // setRangeValue([start,end]);
-
-  //   console.log(newValue);
-  // };
 
 
   let dataset = [

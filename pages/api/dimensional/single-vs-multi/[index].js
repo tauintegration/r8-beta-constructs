@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const { index, parameter } = req.query;
 
   //  curl http://localhost:3000/api/dimensional/line-components/uri?parameter=123
-  console.log(index); // book_risk is the value since [param] dynamic name maps to this value
+  console.log(index);
   console.log(parameter);
 
   const sql_ = `
@@ -31,7 +31,6 @@ export default async function handler(req, res) {
     ORDER BY
       BetType, BetTypeName;
     `;
-    // SELECT line, COUNT(*) AS NumberOfComponents, AVG(component_price) AS AverageComponentPrice, SUM(book_risk_component) AS TotalBookRiskComponent FROM BetComponents GROUP BY line ORDER BY BetComponents.line ASC;
 
   try {
     const [rows, fields] = await pool.query(sql_, [index]); // WHERE column_name = ?

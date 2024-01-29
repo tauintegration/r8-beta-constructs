@@ -5,10 +5,8 @@ import { pool } from '@/lib/mysql2';
 export default async function handler(req, res) {
   const { index, parameter } = req.query;
 
-  // curl http://localhost:3000/api/time-series/over-under/uri?parameter=123
-  console.log(index); // book_risk is the value since [param] dynamic name maps to this value
+  console.log(index);
   console.log(parameter);
-  // curl http://localhost:3000/api/time-series/over-under/uri?parameter=123
 
   const sql_over_under = `
   SELECT

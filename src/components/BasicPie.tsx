@@ -26,49 +26,17 @@ const rainbowColored = generateRainbowColors(50);
 
 
 let data = {
-  // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  // labels: rainbowColors,
   datasets: [
     {
       label: '# of Votes',
       data: [12, 19, 3, 5, 2, 3],
       backgroundColor: rainbowColored,
-      // [
-      //   'rgba(255, 99, 132, 0.2)',
-      //   'rgba(54, 162, 235, 0.2)',
-      //   'rgba(255, 206, 86, 0.2)',
-      //   'rgba(75, 192, 192, 0.2)',
-      //   'rgba(153, 102, 255, 0.2)',
-      //   'rgba(255, 159, 64, 0.2)',
-      // ],
       borderColor: rainbowColored,
-      // borderColor: [
-      //   'rgba(255, 99, 132, 1)',
-      //   'rgba(54, 162, 235, 1)',
-      //   'rgba(255, 206, 86, 1)',
-      //   'rgba(75, 192, 192, 1)',
-      //   'rgba(153, 102, 255, 1)',
-      //   'rgba(255, 159, 64, 1)',
-      // ],
       borderWidth: 1,
     },
   ],
 };
 
-/*
-AverageComponentPrice
-:
-"655.4939"
-NumberOfComponents
-:
-38223
-TotalBookRiskComponent
-:
-"62776"
-line
-:
-"10"
-*/
 
 
 const processData = (apiData: any) => {
@@ -88,11 +56,8 @@ const processData = (apiData: any) => {
 export default function BasicPie(apiData:any, options: any) {
   let { labels, numberOfComponents, averageComponentPrice, totalBookRiskComponent } = processData(apiData);
 
-  // data.labels = labels;
-
   console.log(apiData);
   console.log(labels);
-
 
   let dataset = [
     {
@@ -101,19 +66,6 @@ export default function BasicPie(apiData:any, options: any) {
       // borderColor: 'tomato',
       backgroundColor: rainbowColored,
     },
-    //// USE SELECTION TO CHOOSE ONE OF THE THESE 3 ////
-    // {
-    //   // label: 'Yes',
-    //   data: averageComponentPrice,
-    //   // borderColor: 'green',
-    //   backgroundColor: rainbowColored,
-    // },
-    // {
-    //   // label: 'Yes',
-    //   data: totalBookRiskComponent,
-    //   // borderColor: 'green',
-    //   backgroundColor: rainbowColored,
-    // },
   ];
 
   let data = {

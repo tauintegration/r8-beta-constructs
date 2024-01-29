@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const { index, parameter } = req.query;
 
   // curl http://localhost:3000/api/time-series/yes-no/uri?parameter=123
-  console.log(index); // book_risk is the value since [param] dynamic name maps to this value
+  console.log(index);
   console.log(parameter);
 
   const sql = `

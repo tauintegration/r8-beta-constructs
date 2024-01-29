@@ -7,10 +7,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
 export default function Selection() {
-  const [age, setAge] = React.useState('');
+  const [a, setA] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+    setA(event.target.value as string);
   };
 
   return (
@@ -19,8 +19,8 @@ export default function Selection() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Age"
+          value={a}
+          label="A"
           onChange={handleChange}
         >
           <MenuItem value={10}>Single</MenuItem>

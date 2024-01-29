@@ -61,30 +61,6 @@ const data = {
   ],
 };
 
-/*
-AverageBetAmount
-:
-"2750499705.3267"
-AverageBetProbability
-:
-"0.0035"
-AverageBookRisk
-:
-"9.0637"
-BetType
-:
-"Multi Bet"
-BetTypeName
-:
-"multi"
-TotalBetAmount
-:
-"1365900904164951"
-TotalBets
-:
-498471
-*/
-
 const processData = (apiData: any) => {
   let arrayData = Array.of(apiData.apiData);
   let datum = Array.from(arrayData[0]);
@@ -107,24 +83,6 @@ export default function VerticalBarChartComparatives(apiData:any, options: any) 
   console.log(labels);
 
   let dataset = [
-    // {
-    //   label: 'Average Bet Amount',
-    //   data: averageBetAmount,
-    //   borderColor: 'rgb(255, 99, 132)',
-    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    // },
-    // {
-    //   label: 'Total Bet Amount',
-    //   data: totalBetAmount,
-    //   borderColor: 'rgb(53, 162, 235)',
-    //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    // },
-    // {
-    //   label: 'Average Bet Probability',
-    //   data: averageBetProbability,
-    //   borderColor: 'rgb(255, 99, 132)',
-    //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    // },
     {
       label: 'Total Bet Count',
       data: totalBets,

@@ -12,7 +12,6 @@ export default function ProductSelection(nonDestructedProps:any) {
     setAge(event.target.value as string);
   };
 
-  // const listDatum = new Array(nonDestructedProps.listData);
   const listDatum = nonDestructedProps.listData;
 
   const listOut = listDatum.map((item: any, index: any) => (
@@ -30,10 +29,6 @@ export default function ProductSelection(nonDestructedProps:any) {
           onChange={nonDestructedProps.handler}
         >
           {listOut}
-{/*
-      {listDatum.map((item, index) => (
-        <MenuItem key={index} value={index * 10}>{item}</MenuItem>
-      ))} */}
           <MenuItem value={110}>Name of Player</MenuItem>
           <MenuItem value={220}>Name of Player - 3 Pointer</MenuItem>
         </Select>
